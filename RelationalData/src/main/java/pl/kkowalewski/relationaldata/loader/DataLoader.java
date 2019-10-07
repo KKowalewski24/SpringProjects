@@ -2,7 +2,8 @@ package pl.kkowalewski.relationaldata.loader;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import pl.kkowalewski.relationaldata.RelationalDataApplication;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class DataLoader implements CommandLineRunner {
+public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     /*------------------------ FIELDS REGION ------------------------*/
     private static final Logger log = LoggerFactory.getLogger(RelationalDataApplication.class);
@@ -43,8 +44,8 @@ public class DataLoader implements CommandLineRunner {
 
         names.forEach(it -> log.info("Inserting customer record for " + it));
 
-        jdbcTemplate.batchUpdate("INSERT INTO customers" +
-                "(first_name, last_name) VALUES (?,?)", names
+        jdbcTemplate.batchUpdate(
+                "INSERT INTO customers(first_name, last_name) VALUES (?,?)", names
         );
     }
 
@@ -64,7 +65,7 @@ public class DataLoader implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         prepareTable();
         loadData();
         makeQuery();
