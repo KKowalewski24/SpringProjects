@@ -25,15 +25,16 @@ public class DataLoader implements CommandLineRunner {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
-    public void run(String... args) throws Exception {
+    private void prepareTable() {
         log.info("Creating tables");
 
         jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
         jdbcTemplate.execute("CREATE TABLE customers" +
                 "(id SERIAL, first_name VARCHAR(255),last_name VARCHAR(255))"
         );
+    }
 
+    private void loadData() {
         List<Object[]> names = Arrays
                 .asList("John Woo", "Jeff Dean", "Josh Bloch", "Josh Long")
                 .stream()
@@ -45,6 +46,9 @@ public class DataLoader implements CommandLineRunner {
         jdbcTemplate.batchUpdate("INSERT INTO customers" +
                 "(first_name, last_name) VALUES (?,?)", names
         );
+    }
+
+    private void makeQuery() {
 
         log.info("Querying for customer records where first_name = 'Josh':");
 
@@ -57,5 +61,12 @@ public class DataLoader implements CommandLineRunner {
                         rs.getString("last_name")
                 )
         ).forEach(customer -> log.info(customer.toString()));
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        prepareTable();
+        loadData();
+        makeQuery();
     }
 }
