@@ -4,9 +4,8 @@ public class Constants {
 
     /*------------------------ FIELDS REGION ------------------------*/
     private static final String SLASH = "/";
-
-    public static final String EMPLOYEES = "employees";
-    public static final String ID = "{id}";
+    private static final String EMPLOYEES = "employees";
+    private static final String ID = "{id}";
 
     public static final String PATH_HOME = SLASH;
     public static final String PATH_EMPLOYEES = SLASH + EMPLOYEES;
