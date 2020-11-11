@@ -1,0 +1,30 @@
+#TOP COMMENT
+
+name: Kamil
+
+Objects:
+  -Iron
+  -Calendar
+  -Ringo
+
+pund_sign: "a"
+
+book:
+  author: Kamil Kowalewski
+  publisher: me
+
+truth: yes
+
+anotherTrue: true
+
+colonString: "some: words"
+
+includeNewLine: |
+  vnfduivdf vrbuibud
+  vrivndio vnirdoiv
+  vmrov vieronvdro
+
+ignoreNewLine: >
+  hgmhm btrbf
+  bbfb bfbf
+  bgner grfgbf

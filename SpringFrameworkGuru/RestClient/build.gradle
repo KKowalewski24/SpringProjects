@@ -1,0 +1,39 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.8.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
+group = 'pl.kkowalewski'
+version = '0.0.1'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    compile 'org.apache.commons:commons-lang3:3.9'
+//    compile 'org.jacoco:org.jacoco.agent:0.8.4'
+    compile 'org.apache.httpcomponents:httpclient:4.4.1'
+    compile 'org.webjars:bootstrap:3.3.7-1'
+}
+
+//apply plugin: 'checkstyle'
+//checkstyle {
+//    toolVersion '7.8.1'
+//    configFile file("checkstyle.xml")
+//}
+//checkstyleMain {
+//    source = 'src/main/java'
+//}
+//checkstyleTest {
+//    source = 'src/test/java'
+//}
+
+
